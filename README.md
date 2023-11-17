@@ -1,6 +1,6 @@
-# Creating Customer details synthetically to Solve customer deduplication ( Identity Resolution) 
+# Creating Customer details synthetically to Solve customer deduplication ( Identity Resolution)
 
-This folder recreates customer data synthetically using (Faker Library)[https://faker.readthedocs.io/en/master/fakerclass.html] and suing domain knowledge to mimic how customers details data can be.
+This folder recreates customer data synthetically using [Faker Library](https://faker.readthedocs.io/en/master/fakerclass.html) and suing domain knowledge to mimic how customers details data can be.
 
 It is mainly focused on 4 customer details
 - Full name
@@ -8,7 +8,7 @@ It is mainly focused on 4 customer details
 - Address
 - Phone number
 
-It takes into account 
+It takes into account
 - Typos
 - Omission of data
 - Swap of first names and last names
