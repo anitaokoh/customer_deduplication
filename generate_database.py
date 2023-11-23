@@ -2,7 +2,7 @@ import pandas as pd
 import faker
 import random
 from anomalies_data import create_typo_in_full_name, create_typo_in_email, create_typo_in_address
-from general_data import generate_database
+from general_data import generate_database, transform_phone_number
 
 fake = faker.Faker('de_DE')
 # random.seed(0)
@@ -52,9 +52,8 @@ def backfill(item):
         'Full Name': lambda: fake.first_name() + ' ' + fake.last_name(),
         'Email': fake.email,
         'Address': lambda: fake.address().replace("\n", " "),
-        'Phone Number': fake.phone_number
+        'Phone Number': lambda: transform_phone_number(fake.phone_number())
     }
-
     # Get the corresponding data generation function and call it
     return data_generation_map.get(item, lambda: None)()
 
@@ -116,7 +115,7 @@ def main(maindb_number, anomalies_number):
     df = pd.DataFrame(generate_database(maindb_number))
     db = regeneration(df, anomalies_number)
     df = pd.concat([df, pd.DataFrame(db)], ignore_index=True)
-    return df  
+    return df
 
 if __name__ == '__main__':
     print(main(1, 1))
