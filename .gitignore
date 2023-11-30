@@ -1,2 +1,9 @@
 __pycache__
 .ruff_cache/
+*.json
+data/
+*.ipynb
+Makefile
+.env
+add_model_functionalities.py
+database_storage.py
