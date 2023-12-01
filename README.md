@@ -1,17 +1,21 @@
-# Creating Customer details synthetically to Solve customer deduplication ( Identity Resolution)
+# Building a Customer Deduplication Interface WebApp
 
-This folder recreates customer data synthetically using [Faker Library](https://faker.readthedocs.io/en/master/fakerclass.html) and suing domain knowledge to mimic how customers details data can be.
+### Problem statement:
+A lot of customers create duplicate accounts. This results to the databases filled with both `True new customers` and `False new customers`. In turn , leading to customers being eligible to **new customer incentives** more than once , resulting to financial losses for the company.
 
-It is mainly focused on 4 customer details
-- Full name
-- Email
-- Address
-- Phone number
+One obvious way to solve this is by using heuristic rules to match and block all  existing customers with every new entry to decide, in **Real-time**, if the "new customer" is eligible for new customer incentive or not.
 
-It takes into account
-- Typos
-- Omission of data
-- Swap of first names and last names
-- Irregular input of phone number and addresses
+Deciding the rule is one issue and then deciding how much block-size to use can be computationally expensive
 
-More on the domain knowledge would be shared soon
+### Solution:
+One better solution is to use semantic search to narrow the results returned for example _return only the 5 nearest neighbors_ Then, use heuristic rules to match the five results with the new entry as a way to rerank the score to reduce false positive similarities.
+
+This is what is achieved in this repo and is demostrated in the below video
+
+### Tools used
+- **Mongodb** : For OLTP Database (check the `src/search_src` folder)
+- **SuperDuperDB** : To add the vector functionality to MongoDB (Check the `src/search_src` folder)
+- **Steamlit**: Frontend UI (Check the `app.py` file)
+
+### Other Tools / Libraries are
+- **Faker and Random** : To generate the customer detail data stored in the database (check the `src/data_generation` folder)
