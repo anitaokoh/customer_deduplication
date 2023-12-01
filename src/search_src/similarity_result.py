@@ -1,28 +1,28 @@
-import os
-import json
+# import os
+# import json
 import pandas as pd
 import recordlinkage
 # from bson import ObjectId
-from dotenv import load_dotenv
+# from dotenv import load_dotenv
 from superduperdb import Document
 from src.search_src.create_superduperdb import search_functionality
 
-# Load environment variables from .env file
-load_dotenv()
+# # Load environment variables from .env file
+# load_dotenv()
 
-# Access the variables
-mongodb_uri = os.getenv("MONGODB_URI")
-artifact_store = os.getenv("ARTIFACT_STORE")
-collection_name = os.getenv("COLLECTION_NAME")
-chunk_file = os.getenv("CHUNK_FILE")
+# # Access the variables
+# mongodb_uri = os.getenv("MONGODB_URI")
+# artifact_store = os.getenv("ARTIFACT_STORE")
+# collection_name = os.getenv("COLLECTION_NAME")
+# chunk_file = os.getenv("CHUNK_FILE")
 
-# open the json file
-with open(chunk_file) as f:
-    chunks = json.load(f)
-
-
+# # open the json file
+# with open(chunk_file) as f:
+#     chunks = json.load(f)
 
 
+
+# @st.cache_resource
 def get_nearest_similarity(chunks, mongodb_uri, artifact_store, search_term, n=5):
     """
     Retrieves the most similar documents to a given search term from a MongoDB collection.
@@ -54,7 +54,7 @@ def get_nearest_similarity(chunks, mongodb_uri, artifact_store, search_term, n=5
     return result
 
 
-
+# @st.cache_data
 def get_record_linkage(target_df, chunks, mongodb_uri, artifact_store, search_term, n=5, method='jarowinkler', threshold=0.85):
     """
     Finds and sorts database records that closely match the search term using record linkage and similarity scoring.
@@ -110,13 +110,13 @@ def get_record_linkage(target_df, chunks, mongodb_uri, artifact_store, search_te
 
 
 
-if __name__ == '__main__':
-    search_term = 'gesche herr g.herrmann@web.de  42130 neubrandenburg'
-    target_df = pd.DataFrame([{'Full Name': 'Gesche herr',
-  'Email': 'g.herrmann@web.de',
-  'Address':'42130 neubrandenburg',
-  'Phone Number': None,
-  '_id': '12344556667788'
-  }]).set_index('_id')
-    result = get_record_linkage(target_df, chunks, mongodb_uri, artifact_store, search_term , n=5)
-    print(result)
+# if __name__ == '__main__':
+#     search_term = 'gesche herr g.herrmann@web.de  42130 neubrandenburg'
+#     target_df = pd.DataFrame([{'Full Name': 'Gesche herr',
+#   'Email': 'g.herrmann@web.de',
+#   'Address':'42130 neubrandenburg',
+#   'Phone Number': None,
+#   '_id': '12344556667788'
+#   }]).set_index('_id')
+#     result = get_record_linkage(target_df, chunks, mongodb_uri, artifact_store, search_term , n=5)
+#     print(result)
