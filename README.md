@@ -11,6 +11,7 @@ Deciding the rule is one issue and then deciding how much block-size to use can 
 One better solution is to use semantic search to narrow the results returned for example _return only the 5 nearest neighbors_ Then, use heuristic rules to match the five results with the new entry as a way to rerank the score to reduce false positive similarities.
 
 This is what is achieved in this repo and is demostrated in the below video
+![video](images/customer_dedup.gif)
 
 ### Tools used
 - **Mongodb** : For OLTP Database (check the `src/search_src` folder)
