@@ -35,11 +35,10 @@ def display_results(target_df, result):
         st.write('It seems your details below')
         st.dataframe(target_df.reset_index().drop('_id', axis= 1))
         st.write('is similar to some of our existing customers below')
-        st.dataframe(result.reset_index().drop(['_id', 'details'], axis=1))
+        st.dataframe(result.reset_index().drop(['_id', 'details'], axis=1).style.applymap(lambda _: "background-color: lightgreen;", subset=([0], slice(None))))
         st.markdown("### Sorry, you are not eligible for the new customer 10 days trial")
     else:
         st.markdown("### Thank you for registering. Verify your email in your inbox and start enjoying your new customer 10 days trial.")
-
 
 def home():
     """
